@@ -30,7 +30,7 @@ class GamePanel extends JPanel implements ActionListener{
 
         spawnFood();
 
-        setBackground(Color.BLACK);
+        setBackground(new Color(63, 155, 11));
         setFocusable(true);
 
         timer = new Timer(150, this);
@@ -174,24 +174,14 @@ class GamePanel extends JPanel implements ActionListener{
     {
         super.paintComponent(g);
 
-        if (gameover)
-        {
-            g.setColor(Color.red);
-            g.setFont(new Font("Arial", Font.BOLD, 40));
-            g.drawString("Game Over", 180, 300);
-
-            g.setFont(new Font("Arial", Font.PLAIN, 16));
-            g.drawString("Press R to restart", 220, 340);
-        }
-
-        g.setColor(Color.ORANGE);
+        g.setColor(Color.RED);
         g.fillOval(food.x * Cell_Size, food.y * Cell_Size, Cell_Size, Cell_Size);
 
-        g.setColor(new Color(0, 255, 0));
+        g.setColor(new Color(100, 120, 255));
         Point head = Snake.get(0);
         g.fillRect(head.x * Cell_Size, head.y * Cell_Size, Cell_Size, Cell_Size);
 
-        g.setColor(new Color(0, 200, 0));
+        g.setColor(new Color(0, 120, 212));
         for (int i=1; i<Snake.size(); i++)
         {
             Point p = Snake.get(i);
@@ -201,7 +191,18 @@ class GamePanel extends JPanel implements ActionListener{
         }
 
         g.setColor(Color.WHITE);
+        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, Cell_Size));
         g.drawString("Score: " + score, 10, 15);
+
+        if (gameover)
+        {
+            g.setColor(Color.red);
+            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.drawString("Game Over", 180, 300);
+
+            g.setFont(new Font("Arial", Font.PLAIN, 16));
+            g.drawString("Press R to restart", 220, 340);
+        }
     }
 
     @Override
